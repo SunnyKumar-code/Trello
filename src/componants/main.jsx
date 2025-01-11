@@ -27,25 +27,30 @@ const Main = () => {
     board_.boards[board_.active].list = newList;
     setAllBoard(board_);
   };
-  const cardData = (e,idx) => {
+  const cardData = (e, idx) => {
+    if (!e.trim()) {
+      alert("Card title cannot be empty");
+      return;
+    }
     let newList = [...bdata.list];
-    newList[idx].items.push({id:Utils.makeid(5),title:e})
-
-    let board_={...allboard}
-    board_.boards[board_.active].list=newList
-    setAllBoard(board_)
-
+    newList[idx].items.push({ id: Utils.makeid(5), title: e });
+    let board_ = { ...allboard };
+    board_.boards[board_.active].list = newList;
+    setAllBoard(board_);
   };
+  
   const listData = (e) => {
+    if (!e.trim()) {
+      alert("List title cannot be empty");
+      return;
+    }
     let newList = [...bdata.list];
-    newList.push(
-        {id:newList.length+1+'',title:e,items:[]}
-    )
-    let board_={...allboard}
-    board_.boards[board_.active].list=newList
-    setAllBoard(board_)
-
+    newList.push({ id: newList.length + 1 + "", title: e, items: [] });
+    let board_ = { ...allboard };
+    board_.boards[board_.active].list = newList;
+    setAllBoard(board_);
   };
+  
   
   return (
     <div className="flex flex-col  w-full" style={{backgroundColor:`${bdata.bgcolor}`}}>
@@ -62,7 +67,7 @@ const Main = () => {
         </div>
       </div>
       <div className=" flex flex-col w-full flex-grow relative">
-        <div className="absolute mb-1 pb-2 left-0 right-0 top-0 bottom-0 p-3 flex overflow-x-scroll overflow-y-hidden">
+        <div className="absolute mb-1 pb-2 left-0 right-0 top-0 bottom-0 p-3 flex overflow-x-scroll overflow-y-hidden scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-300 hover:scrollbar-thumb-gray-400 transition-all duration-200">
           <DragDropContext onDragEnd={onDragEnd}>
             {bdata.list &&
               bdata.list.map((x, i) => {
@@ -75,7 +80,7 @@ const Main = () => {
                       <div className="flex justify-between p-1">
                         <span>{x.title}</span>
                         <button className="hover:bg-gray-500 rounded p-1">
-                          {" "}
+                        
                           <MoreHorizontal size={16}></MoreHorizontal>
                         </button>
                       </div>
@@ -106,7 +111,7 @@ const Main = () => {
                           >
                             <span>{item.title}</span>
                             <span className="flex justify-start items-start">
-                              <button className="hover:bg-gray-600 rounded p-1">
+                              <button  className="hover:bg-gray-600 rounded p-1">
                                 <Edit2 size={16}></Edit2>
                               </button>
                             </span>

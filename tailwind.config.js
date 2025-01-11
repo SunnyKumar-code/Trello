@@ -5,8 +5,17 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      scrollbar: {
+        DEFAULT: {
+          track: 'rounded-md bg-gray-300',
+          thumb: 'rounded-md bg-blue-500 hover:bg-blue-700',
+        },
+      },
+    },
   },
-  plugins: [],
+  plugins: [
+    require('tailwind-scrollbar'),
+  ],
 }
 
