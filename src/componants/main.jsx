@@ -1,5 +1,5 @@
-import React, { useContext, useState } from "react";
-import { MoreHorizontal, UserPlus, Edit2, X } from "react-feather";
+import { useContext, useState } from "react";
+import {  Edit2, X } from "react-feather";
 import CardAdd from "./CardAdd";
 import { BoardContext } from "../context/BoardContext";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
@@ -134,7 +134,7 @@ const Main = () => {
                               draggableId={item.id}
                               index={idx}
                             >
-                              {(provided, snapshot) => (
+                              {(provided) => (
                                 <div
                                   ref={provided.innerRef}
                                   {...provided.draggableProps}
